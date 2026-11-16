@@ -9,11 +9,10 @@ permissions: read-all
 jobs:
   build:
     permissions:
-      id-token: write   # 用于签名生成 SLSA Provenance
-      contents: write   # 用于上传编译产物到 Release
-      actions: read     # 读取工作流路径
-    # 将版本号从 v1.4.0 升级到 v1.10.0，彻底修复 v3 artifact 废弃报错
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_go_slsa3.yml@v1.10.0
+      id-token: write
+      contents: write
+      actions: read
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_go_slsa3.yml@v2.0.0
     with:
       go-version: 1.21
       config-file: .slsa-goreleaser.yml
