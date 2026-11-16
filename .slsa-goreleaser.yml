@@ -1,9 +1,0 @@
-version: 1
-module: github.com/bulwarkid/virtual-fido
-binary: virtual-fido
-main: ./cmd/demo
-
-# 将目标平台作为参数强行传给 go build
-args:
-  - -trimpath
-  - -ldflags=-s -w
