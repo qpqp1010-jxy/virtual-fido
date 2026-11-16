@@ -9,11 +9,11 @@ permissions: read-all
 jobs:
   build:
     permissions:
-      id-token: write   # 必须保留：用于签名生成 SLSA Provenance
-      contents: write   # 必须保留：用于上传编译产物到 Release
-      actions: read     # 必须保留：读取工作流路径
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_go_slsa3.yml@v1.10.0 # 建议用较新的版本
+      id-token: write   # 用于签名生成 SLSA Provenance
+      contents: write   # 用于上传编译产物到 Release
+      actions: read     # 读取工作流路径
+    # 将版本号从 v1.4.0 升级到 v1.10.0，彻底修复 v3 artifact 废弃报错
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_go_slsa3.yml@v1.10.0
     with:
       go-version: 1.21
-      # 这里指定你的配置文件路径（必须是根目录下）
       config-file: .slsa-goreleaser.yml
