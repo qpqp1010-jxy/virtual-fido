@@ -3,12 +3,7 @@ module: github.com/bulwarkid/virtual-fido
 binary: virtual-fido
 main: ./cmd/demo
 
-# 注意这里的格式变化
-env:
-  CGO_ENABLED: "0"
-  GOOS: "windows"
-  GOARCH: "amd64"
-
+# 将目标平台作为参数强行传给 go build
 args:
   - -trimpath
   - -ldflags=-s -w
