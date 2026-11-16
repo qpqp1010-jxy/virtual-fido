@@ -3,13 +3,12 @@ module: github.com/bulwarkid/virtual-fido
 binary: virtual-fido
 main: ./cmd/demo
 
-# 强制指定 Windows 64位 编译环境
+# 注意这里的格式变化
 env:
-  - CGO_ENABLED=0
-  - GOOS=windows
-  - GOARCH=amd64
+  CGO_ENABLED: "0"
+  GOOS: "windows"
+  GOARCH: "amd64"
 
-# 将操作系统和架构作为参数传给 go build
 args:
   - -trimpath
   - -ldflags=-s -w
