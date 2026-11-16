@@ -1,23 +1,29 @@
-name: SLSA Go releaser
+name: Compile Virtual FIDO
+
 on:
   workflow_dispatch:
   release:
     types: [created]
 
-permissions: read-all
-
-env:
-  GOOS: windows
-  GOARCH: amd64
-  CGO_ENABLED: 0
-
 jobs:
-  build:
-    permissions:
-      id-token: write
-      contents: write
-      actions: read
-    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_go_slsa3.yml@v2.0.0
-    with:
-      go-version: 1.21
-      config-file: .slsa-goreleaser.yml
+  build-windows-exe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Setup Go Environment
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Build Windows Executable
+        run: |
+          # 强制指定编译为 Windows 64位，并关闭 CGO
+          GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o virtual-fido.exe ./cmd/demo
+
+      - name: Upload EXE Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: virtual-fido-windows-exe
+          path: virtual-fido.exe
