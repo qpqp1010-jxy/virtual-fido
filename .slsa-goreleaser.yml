@@ -1,4 +1,4 @@
-version: 0.0.0.0.0.1
+version: 1
 
 # 必填项：你的 Go 模块名称（通常在 go.mod 文件第一行）
 module: github.com/bulwarkid/virtual-fido
