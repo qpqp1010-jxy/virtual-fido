@@ -1,0 +1,23 @@
+# 必填项：你的 Go 模块名称（通常在 go.mod 文件第一行）
+module: github.com/bulwarkid/virtual-fido
+
+# 编译产物的名字
+binary: virtual-fido
+
+# 目标操作系统和架构
+# windows/amd64 是 Windows 64位
+# linux/amd64 是 Linux 64位
+# darwin/amd64 是 Mac Intel 芯片
+# darwin/arm64 是 Mac M1/M2 芯片
+targets:
+  - os: windows
+    arch: amd64
+  - os: linux
+    arch: amd64
+  - os: darwin
+    arch: amd64
+  - os: darwin
+    arch: arm64
+
+# 必填项：主程序的相对路径（包含 main 函数的目录）
+main: ./cmd/demo
